@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+    - name: update repository intex
+      apt:
+        update_cache: yes
+
+    - name: install apache2 package
+      apt:
+        name: apache2
+        state: latest
+
+    - name: add PHP support for apche
+      apt:
+        name: libapache2-mod-php
+        state: latest
