@@ -1,3 +1,4 @@
-192.168.1.11 ansible_user=mrgm
+192.168.1.23 ansible_user=mrgm
+192.168.1.22 ansible_user=root
 ec2-3-89-119-67.compute-1.amazonaws.com ansible_user=ubuntu
 ec2-54-242-232-76.compute-1.amazonaws.com ansible_user=ubuntu
