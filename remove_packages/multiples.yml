@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: install updates (CentOS)
-      dnf: 
+      dnf:
         update_only: yes
         update_cache: yes
       when: ansible_distribution == "CentOS"
@@ -18,21 +18,44 @@
 - hosts: web_servers
   become: true
   tasks:
-    - name: install apache2 and php packages for Ubuntu
+    - name: remove apache2 and php packages for Ubuntu
       apt:
         name:
           - apache2
           - libapache2-mod-php
-        state: latest
+        state: absent
         update_cache: yes
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
 
-    - name: install apache2 pnd php packages for CentOS
+    - name: remove apache2 pnd php packages for CentOS
       dnf:
         name:
           - httpd
           - php
-        state: latest
+        state: absent
         update_cache: yes
       when: ansible_distribution == "CentOS"
+
+- hosts: db_servers
+  become: true
+  tasks:
+    - name: remove mariadb package (CentOS)
+      dnf:
+        name: mariadb
+        state: absent
+      when: ansible_distribution == "CentOS"
+
+    - name: remove mariadb package (Ubunru)
+      apt:
+        name: mariadb-server
+        state: absent
+      when: ansible_distribution == "Ubuntu"
+
+- hosts: file_servers
+  become: true
+  tasks:
+    - name: remove samba package
+      package:
+        name: samba
+        state: absent

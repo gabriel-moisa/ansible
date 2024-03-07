@@ -1,0 +1,4 @@
+192.168.1.23 ansible_user=mrgm apache_package=apache2 php_package=libapache2-mod-php
+192.168.1.22 ansible_user=root apache_package=httpd php_package=php
+ec2-3-89-119-67.compute-1.amazonaws.com ansible_user=ubuntu apache_package=apache2 php_package=libapache2-mod-php
+ec2-54-242-232-76.compute-1.amazonaws.com ansible_user=ubuntu apache_package=apache2 php_package=libapache2-mod-php
