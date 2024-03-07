@@ -41,6 +41,15 @@
         update_cache: yes
       when: ansible_distribution == "CentOS"
 
+    - name: copy default html file for site
+      tags: apache,apache2,httpd
+      copy:
+        src: /root/ansible/files/default_site.html
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: 0644
+
 - hosts: db_servers
   become: true
   tasks: 
