@@ -12,4 +12,3 @@ ec2-54-242-232-76.compute-1.amazonaws.com ansible_user=ubuntu
 
 [workstations]
 192.168.1.16 ansible_user=the-mechanic
-
