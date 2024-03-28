@@ -31,6 +31,24 @@
       state: latest
     when: ansible_distribution in ["CentOS", "Fedora"]
 
+  - name: copy default html file for site
+    tags: apache,apache2,httpd
+    copy:
+      src: /home/mg/ansible/files/default_site.html
+      dest: /var/www/html/idex.html
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: copy css file for defaul site
+    tags: apache,apache2,httpd
+    copy:
+      src: /home/mg/ansible/files/styles.css
+      dest: /var/www/html/styles.css
+      owner: root
+      group: root
+      mode: 0644
+
   - name: install apache and php for (Ubuntu/Fedora)
     tags: apache,apache2,ubuntu
     apt:
