@@ -1,15 +1,13 @@
 [web_servers]
-#192.168.1.23 ansible_user=mrgm apache_package=apache2
-#192.168.1.22 ansible_user=root apache_package=httpd
 192.168.1.8 ansible_user=mg
-192.168.1.10 ansible_user=root
 192.168.1.11 ansible_user=root
-192.168.1.15 ansible_user=root
 
 [db_servers]
+192.168.1.15 ansible_user=root
 ec2-3-89-119-67.compute-1.amazonaws.com ansible_user=ubuntu
 
 [file_servers]
+192.168.1.10 ansible_user=root
 ec2-54-242-232-76.compute-1.amazonaws.com ansible_user=ubuntu
 
 [workstations]

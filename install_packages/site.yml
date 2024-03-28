@@ -1,0 +1,69 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Install updates (CentOS/Fedora)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution in ["CentOS", "Fedora"]
+
+  - name: Install updates (Ubuntu/Debian)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache and php for (CentOS/Fedora)
+    tags: apache,centos,httpd
+    dnf:
+      name:
+        - httpd
+        - php
+      state: latest
+    when: ansible_distribution in ["CentOS", "Fedora"]
+
+  - name: install apache and php for (Ubuntu/Fedora)
+    tags: apache,apache2,ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+- hosts: db_servers
+  become: true
+  tasks:
+
+  - name: install mariadb (CentOS/Fedora)
+    tags: centos,db,mariadb
+    dnf:
+      name: mariadb
+      state: latest
+    when: ansible_distribution in ["CentOS", "Fedora"]
+
+  - name: install mariadb package (Ubuntu/Debian)
+    tags: ubuntu,db,mariadb
+    apt:
+      name: mariadb-server
+      state: latest
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+- hosts: file_servers
+  become: true
+  tasks:
+
+  - name: install samba package
+    tags: samba
+    package:
+      name: samba
+      state: latest 
