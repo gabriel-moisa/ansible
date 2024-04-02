@@ -1,0 +1,60 @@
+- name: install apache and php for (CentOS/Fedora)
+  tags: apache,centos,httpd
+  dnf:
+    name:
+      - httpd
+      - php
+    state: latest
+  when: ansible_distribution in ["CentOS", "Fedora"]
+
+- name: start httpd (Centos/Fedora)
+  tags: apache,centos,httpd
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+  when: ansible_distribution in ["CentOS", "Fedora"]
+
+- name: change e-mail address for admin
+  tags: apache,centos,httpd
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^ServerAdmin'
+    line: ServerAdmin gm-admin@localhost
+  when: ansible_distribution in ["CentOS", "Fedora"]
+  register: httpd
+
+- name: restart httpd (CentOS)
+  tags: apache,cebtos,httpd
+  service:
+    name: httpd
+    state: restart
+  when: httpd.changed
+
+- name: copy default html file for site
+  tags: apache,apache2,httpd
+  copy:
+    src: ./files/default_site.html
+    dest: /var/www/html/idex.html
+    owner: root
+    group: root
+    mode: 0644
+
+- name: copy css file for defaul site
+  tags: apache,apache2,httpd
+  copy:
+    src: ./files/styles.css
+    dest: /var/www/html/styles.css
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install apache and php for (Ubuntu/Fedora)
+  tags: apache,apache2,ubuntu
+  apt:
+    name:
+      - apache2
+      - libapache2-mod-php
+    state: latest
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+

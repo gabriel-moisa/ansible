@@ -30,7 +30,7 @@
     - workstations
  
 - hosts: web_servers
-  become: ture
+  become: true
   roles:
     - web_servers
 
@@ -40,6 +40,6 @@
     - db_servers
 
 - hosts: file_servers
-  become: ture
+  become: true
   roles:
     - file_servers 

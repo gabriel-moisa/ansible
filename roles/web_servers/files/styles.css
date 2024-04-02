@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #787c82; /* Light gray background */
+}
+
+.container {
+    display: flex;
+}
+
+.menu {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 200px;
+}
+
+.menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #555;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu button:hover {
+    background-color: #777;
+}
+
+.content {
+    padding: 20px;
+}
