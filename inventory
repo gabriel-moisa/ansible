@@ -1,14 +1,14 @@
 [web_servers]
-192.168.1.8 ansible_user=mg
-192.168.1.11 ansible_user=root
+192.168.1.11
+192.168.1.15
 
 [db_servers]
-192.168.1.15 ansible_user=root
-ec2-3-89-119-67.compute-1.amazonaws.com ansible_user=ubuntu
+192.168.1.18
+ec2-3-89-119-67.compute-1.amazonaws.com
 
 [file_servers]
-192.168.1.10 ansible_user=root
-ec2-54-242-232-76.compute-1.amazonaws.com ansible_user=ubuntu
+192.168.1.12
+ec2-54-242-232-76.compute-1.amazonaws.com
 
 [workstations]
-192.168.1.16 ansible_user=the-mechanic
+192.168.1.16
